@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
+import Error from './error';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -31,7 +33,7 @@ export default function RootLayout({ children }) {
 						</div>
 						<ul className="flex items-center gap-4">
 							<li>
-								<Link href={'/categories'}>Categories</Link>
+								<Link href={'/users'}>Users</Link>
 							</li>
 							<li>
 								<Link href={'/posts'}>Posts</Link>
@@ -39,7 +41,7 @@ export default function RootLayout({ children }) {
 						</ul>
 					</nav>
 				</header>
-				{children}
+				<ErrorBoundary fallback={<Error />}>{children}</ErrorBoundary>
 				<footer className="bg-black text-white py-5 mt-10">
 					<div className="flex justify-center items-center my-6 ">
 						<h3 className="text-5xl font-bold">New Blog Website</h3>
